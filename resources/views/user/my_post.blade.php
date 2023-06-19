@@ -5,20 +5,18 @@
     @include('user.homecss')
 
     <style>
-       :root {
+    :root {
     --body-color:#efefef;
     --nav-color: #1876f2;
     --bg-color: #fff;
-}
-.post-contain {    
-    background: var(--bg-color);
-    border-radius: 6px;
-    padding: 20px;
-    color: #626262;
-    /* margin: 20px 0; */
-}
-
-
+    }
+    .post-contain {    
+        background: var(--bg-color);
+        border-radius: 6px;
+        padding: 20px;
+        color: #626262;
+        /* margin: 20px 0; */
+    }
     </style>
 </head>
 
@@ -35,10 +33,7 @@
 
         <!-- ---------Main Content ------------ -->
 
-
         <!--Main start-->
-
-
         <div class="main-content">
 
 
@@ -51,6 +46,7 @@
                         <div>
                             <p>{{ Auth::user()->name }} </p>
                         </div>
+                        <!-- Here we submit the post with the Button Post -->
                         <div class="content">
                             <input type="submit" value="Post" style="position: relative; right:-170px;">
                         </div>
@@ -61,9 +57,10 @@
                         <textarea rows="3" placeholder="What's on your mind?" name="description">
 
                     </textarea>
+                    <!-- Here We are going to define Image -->
                         <div class="add-post-links">
-                            <input type="file" name="" id="" accept="image/png,image/jpg,image/jpeg">
-                            <a href="#" onclick="open_file()"><img src="users/images/photo.png" alt="" /> Photo/Video</a>
+                            <input type="file" name="image" id="" class="form-control" placeholder="image">
+                    
                         </div>
                     </div>
 
@@ -90,7 +87,7 @@
                     {{$post->description}}
 
                 </p>
-                <img class="post-img" src="users/images/feed-image-1.png" alt="" />
+                <img class="" src="/images/{{$post->image}}" width="1053px" height="569px" alt="" />
 
                 <div class="post-row">
                     <div class="activity-icons">

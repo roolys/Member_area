@@ -13,9 +13,16 @@ use Illuminate\Database\Eloquent\Builder;
 
 class  HomeController extends Controller
 {
+    // public function header(){
+    //     return view('home.header');
+    // }
+
+    //Home page View
+    public function homepage(){
+        return view('home.homepage');
+    }
     //
     public function index(){
-
         if(Auth::id()){
             $usertype=Auth()->user()->usertype;
 
@@ -32,22 +39,13 @@ class  HomeController extends Controller
                 return redirect()->back(); 
             }
         } 
-
-
-    }
-  
-    public function homepage(){
-        return view('home.homepage');
-    }
-
-    public function header(){
-        return view('home.header');
-    }
-
+    } 
+    
     //Stockage des data dans la base de donnees
     public function user_post(Request $request){
         $request->validate([
             'description'=>'required',
+            'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
 
@@ -55,10 +53,24 @@ class  HomeController extends Controller
         $user_id=$user->id;
         $name=$user->name;
         $usertype=$user->usertype;
-        // $imagePath='storage/'.$request->file('image')->store('postImage','public');
+
 
         $post=new Post;
+        $post->user_id=$user_id; 
+        $post->name=$name;
+        $post->usertype=$usertype;
         $post->description=$request->description;
+
+
+        if($image=$request->file('image')){
+            $destinationPath='images/';
+            $profileImage=date('ymdHis').",".$image->getClientOriginalExtension();
+            $image->move($destinationPath,$profileImage);
+            $post->image=$profileImage;
+        }
+
+        // $imagePath='storage/'.$request->file('image')->store('postImage','public');
+
 
         //Keeping image in public folder
         // $image=$request->image;
@@ -67,10 +79,6 @@ class  HomeController extends Controller
 
         //Storing image in Database
         // $post->image=$imagename;
-
-        $post->user_id=$user_id; 
-        $post->name=$name;
-        $post->usertype=$usertype;
          
 
         // $post->post_status='active';
@@ -87,15 +95,11 @@ class  HomeController extends Controller
  
          //Storing image in Database
 
-         $image='storage/'.$request->file('image')->store('postimage','public');
-         $post=new Post();
-         $post->image=$image;
-         $post->save();
-        return redirect()->route('my_post')->with('status', 'Post added');
-
-
-
-
+        //  $image='storage/'.$request->file('image')->store('postimage','public');
+        //  $post=new Post();
+        //  $post->image=$image;
+        //  $post->save();
+        // return redirect()->route('my_post')->with('status', 'Post added');
         
     }
 

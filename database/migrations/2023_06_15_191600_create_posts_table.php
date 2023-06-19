@@ -13,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            // $table->string('title')->nullable();
             $table->longText('description')->nullable();
-            // $table->string('image')->nullable();
             $table->string('name')->nullable();
-            // $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('user_id')->nullable();
-            $table->string('image')->nullable();
-            // $table->string('post_status')->nullable();
+            $table->string('image');
             $table->string('usertype')->nullable();
 
+
+            // $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
