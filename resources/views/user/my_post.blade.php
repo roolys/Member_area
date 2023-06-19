@@ -6,8 +6,6 @@
 
     <style>
     :root {
-    --body-color:#efefef;
-    --nav-color: #1876f2;
     --bg-color: #fff;
     }
     .post-contain {    
@@ -15,9 +13,11 @@
         border-radius: 6px;
         padding: 20px;
         color: #626262;
-        /* margin: 20px 0; */
     }
     </style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+
 </head>
 
 <body>
@@ -91,15 +91,16 @@
 
                 <div class="post-row">
                     <div class="activity-icons">
-                        <div><img src="users/images/like-blue.png" alt="" /> 120</div>
-                        <div><img src="users/images/comments.png" alt="" /> 45</div>
+                        <!-- <div><img src="users/images/like-blue.png" alt="" />Like</div> -->
+                        <!-- <div><img src="users/images/comments.png" alt="" />Comment</div> -->
+                        <i class="bi bi-hand-thumbs-up">Like</i>
+                        <i class="bi bi-chat-left">Comment</i>
                     </div>
                 </div>
              </div>  
              @endforeach 
             </div>
             <!--end post-Container-->
-
         </div>
         <!--Main end-->
 
@@ -110,7 +111,6 @@
         <!-- @include('user.footer') -->
 
     </div>
-
 </body>
 
 </html>

@@ -7,9 +7,25 @@
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Nom')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        </div>
+
+        <!-- Surname -->
+
+        <div class="mt-4">
+            <x-input-label for="prenom" :value="__('Prenom')" />
+            <x-text-input id="prenom" class="block mt-1 w-full" type="text" name="prenom" :value="old('prenom')" required autofocus autocomplete="prenom" />
+            <x-input-error :messages="$errors->get('prenom')" class="mt-2" />
+        </div>
+
+        <!-- Pseudo -->
+
+        <div class="mt-4">
+            <x-input-label for="pseudo" :value="__('Pseudo')" />
+            <x-text-input id="pseudo" class="block mt-1 w-full" type="text" name="pseudo" :value="old('pseudo')" required autofocus autocomplete="pseudo" />
+            <x-input-error :messages="$errors->get('pseudo')" class="mt-2" />
         </div>
 
         <!-- Email Address -->

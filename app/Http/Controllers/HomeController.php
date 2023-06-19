@@ -54,17 +54,16 @@ class  HomeController extends Controller
         $name=$user->name;
         $usertype=$user->usertype;
 
-
         $post=new Post;
         $post->user_id=$user_id; 
         $post->name=$name;
         $post->usertype=$usertype;
         $post->description=$request->description;
+        $image=$request->file('image');
 
-
-        if($image=$request->file('image')){
+        if($image){
             $destinationPath='images/';
-            $profileImage=date('ymdHis').",".$image->getClientOriginalExtension();
+            $profileImage=date('ymdHis').".".$image->getClientOriginalExtension();
             $image->move($destinationPath,$profileImage);
             $post->image=$profileImage;
         }
@@ -99,8 +98,7 @@ class  HomeController extends Controller
         //  $post=new Post();
         //  $post->image=$image;
         //  $post->save();
-        // return redirect()->route('my_post')->with('status', 'Post added');
-        
+        // return redirect()->route('my_post')->with('status', 'Post added');        
     }
 
     public function my_post(){
@@ -109,12 +107,6 @@ class  HomeController extends Controller
         // $posts=Post::where('user_id','=',$user_id)->get();
 
         $posts=Post::All()->sortByDesc('created_at');
-        
-        
-
-    
-
-
         return view('user.my_post',compact('posts'));
     }
 }
