@@ -15,9 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[HomeController::class,'homepage']);
+Route::get('/',[HomeController::class,'homepage'])->name('homepage');
 
-Route::get('/home',[HomeController::class,'index'])->middleware('auth')->name('home');
 
 
 Route::middleware('auth')->group(function () {
@@ -26,7 +25,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::post('/user_post',[HomeController::class,'user_post']);
-Route::get('/post_page',[HomeController::class,'post_page']);
+
+
+Route::get('/home',[HomeController::class,'index'])->middleware('auth')->name('home');
+Route::post('/user_post',[HomeController::class,'user_post'])->middleware('auth')->name('user_post');
+Route::get('/my_post',[HomeController::class,'my_post'])->middleware('auth')->name('my_post');
 
 require __DIR__.'/auth.php';

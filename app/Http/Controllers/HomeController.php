@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
-use Illuminate\View\View;
+use App\Http\Controllers\DB;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
+
+
 class  HomeController extends Controller
 {
     //
@@ -15,8 +19,11 @@ class  HomeController extends Controller
         if(Auth::id()){
             $usertype=Auth()->user()->usertype;
 
-            if($usertype=='user'){
-                return view('user.homepage');
+            if($usertype=='user'){      
+                
+                $posts=Post::All()->sortByDesc('created_at');
+
+                return view('user.my_post',compact('posts'));
             }
             else if($usertype=='admin'){
                 return view('admin.adminhome');
@@ -37,17 +44,73 @@ class  HomeController extends Controller
         return view('home.header');
     }
 
-    public function post_page(){
-        return view('user.homepage');
-    }
-    public function user_post(Request $request): View
-    {
-        return view('user.homepage',[
-            'user'=>$request->post(),
-            
+    //Stockage des data dans la base de donnees
+    public function user_post(Request $request){
+        $request->validate([
+            'description'=>'required',
         ]);
-        
-        return redirect()->back();
 
+
+        $user=Auth()->user();
+        $user_id=$user->id;
+        $name=$user->name;
+        $usertype=$user->usertype;
+        // $imagePath='storage/'.$request->file('image')->store('postImage','public');
+
+        $post=new Post;
+        $post->description=$request->description;
+
+        //Keeping image in public folder
+        // $image=$request->image;
+        // $imagename=time().''.$image->getClientOriginalExtension();
+        // $request->image->move('postImage',$imagename);
+
+        //Storing image in Database
+        // $post->image=$imagename;
+
+        $post->user_id=$user_id; 
+        $post->name=$name;
+        $post->usertype=$usertype;
+         
+
+        // $post->post_status='active';
+        $post->save();
+        return redirect()->route('my_post')->with('status', 'Post added');
+
+    }
+    public function store(Request $request){
+
+         //Keeping image in public folder
+        //  $image=$request->image;
+        //  $imagename=time().''.$image->getClientOriginalExtension();
+        //  $request->image->move('postImage',$imagename);
+ 
+         //Storing image in Database
+
+         $image='storage/'.$request->file('image')->store('postimage','public');
+         $post=new Post();
+         $post->image=$image;
+         $post->save();
+        return redirect()->route('my_post')->with('status', 'Post added');
+
+
+
+
+        
+    }
+
+    public function my_post(){
+        $user=Auth::user();
+        $user_id=$user->id;
+        // $posts=Post::where('user_id','=',$user_id)->get();
+
+        $posts=Post::All()->sortByDesc('created_at');
+        
+        
+
+    
+
+
+        return view('user.my_post',compact('posts'));
     }
 }

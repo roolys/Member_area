@@ -2,12 +2,12 @@
         <div class="nav-left">
             <img class="logo" src="users/images/" alt="" />
             <ul>
-                <li><img src="users/images/notification.png" alt="" /></li>
+                <!-- <li><img src="users/images/notification.png" alt="" /></li>
                 <li><img src="users/images/inbox.png" alt="" /></li>
-                <li><img src="users/images/video.png" alt="" /></li>
-                <li> 
+                <li><img src="users/images/video.png" alt="" /></li> -->
+                <!-- <li> 
                       <a href="{{url('create_post')}}">Create Post</a>
-                    </li>
+                    </li> -->
             </ul>
         </div>
 
@@ -18,10 +18,15 @@
             </div>
             <div class="list-inline-item logout">     
 
+            @if(Route::has('login'))
+
+            @auth
+
                 <x-app-layout>
                           
                 </x-app-layout>
-                
+            @endauth    
+            @endif    
             </div>    
         </div>
 

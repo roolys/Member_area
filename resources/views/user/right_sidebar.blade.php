@@ -1,5 +1,5 @@
 <div class="right-sidebar">
-            <div class="sidebar-title">
+            <!-- <div class="sidebar-title">
                 <h4>Events</h4>
                 <a href="#">See All</a>
             </div>
@@ -32,7 +32,7 @@
                 <h4>Advertisement</h4>
                 <a href="#">Close</a>
             </div>
-            <img src="users/images/advertisement.png" alt="" class="sidebar-ads" />
+            <img src="users/images/advertisement.png" alt="" class="sidebar-ads" /> -->
 
             <div class="sidebar-title">
                 <h4>Conversation</h4>
