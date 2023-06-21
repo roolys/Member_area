@@ -4,24 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Post extends Model
+class Comment extends Model
 {
     use HasFactory;
 
-    //We have post and it belongsTo  user
-
+    //We have comment it belongsTo user 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-
-    //We have Post and it hasMany comment
-    public function comments()
-    {
-        return $this->hasMany(Comment::class)->latest();
-        
-    }
-    //
 
 }

@@ -2,26 +2,18 @@
 <html lang="en">
 
 <head>
-    @include('user.homecss')
 
-    <style>
-    :root {
-    --bg-color: #fff;
-    }
-    .post-contain {    
-        background: var(--bg-color);
-        border-radius: 6px;
-        padding: 20px;
-        color: #626262;
-    }
-    </style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-
-
+    
+@include('user.homecss')
+    
 </head>
 
 <body>
     @include('user.header')
+
 
 
     <div class="container">
@@ -35,7 +27,6 @@
 
         <!--Main start-->
         <div class="main-content">
-
 
             <div class="write-post-container">
                 <form action="{{url('user_post')}}" method="POST" enctype="multipart/form-data">
@@ -69,7 +60,9 @@
 
             <!--Post-Container-->
             <div class="" style="margin-top: 5%;">
+
                 @foreach($posts as $post)
+                    
              <div class="post-contain" style="margin-top: 5%;">
                 <div class="post-row mt-5">
 
@@ -85,32 +78,53 @@
 
                 <p class="post-text">
                     {{$post->description}}
-
                 </p>
+
                 <img class="" src="/images/{{$post->image}}" width="1053px" height="569px" alt="" />
 
                 <div class="post-row">
-                    <div class="activity-icons">
+                    <div class="activity-icons mt-4">
                         <!-- <div><img src="users/images/like-blue.png" alt="" />Like</div> -->
                         <!-- <div><img src="users/images/comments.png" alt="" />Comment</div> -->
-                        <i class="bi bi-hand-thumbs-up">Like</i>
-                        <i class="bi bi-chat-left">Comment</i>
-                    </div>
+                        <div><i class="bi bi-hand-thumbs-up">Like</i></div>
+                            <div style="padding-left: 150px;">
+                            <i class="bi bi-chat-left">
+                                <a title="text" class="btn" data-bs-toggle="modal"  data-bs-target=.bd-example-modal-lg>Comment</a>
+                            </i>
+                            </div>
+                        </div>
                 </div>
-             </div>  
-             @endforeach 
+
+             </div> 
+
+
+             @endforeach
+
             </div>
+
             <!--end post-Container-->
         </div>
+
+
         <!--Main end-->
 
+        <!-- Modal for Comment -->
+
+        @include('user.comment')
+
+
         <!-- ---------Right Sidebar ------------ -->
+
+        
         @include('user.right_sidebar')
 
         <!-- ---------Footer -------------->
         <!-- @include('user.footer') -->
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
 </body>
 
 </html>

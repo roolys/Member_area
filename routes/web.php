@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route for the landing page
 Route::get('/',[HomeController::class,'homepage'])->name('homepage');
 
 
@@ -26,9 +27,18 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
+//Route for redirect user or admin in her page
 Route::get('/home',[HomeController::class,'index'])->middleware('auth')->name('home');
+//Route for store post in the database
 Route::post('/user_post',[HomeController::class,'user_post'])->middleware('auth')->name('user_post');
+//Route for create and display post
 Route::get('/my_post',[HomeController::class,'my_post'])->middleware('auth')->name('my_post');
+
+//Route for store comment in database
+Route::post('/comment_post',[HomeController::class,'comment_post'])->middleware('auth')->name('comment_post');
+//Route for create and display comment
+Route::get('/comment',[HomeController::class,'comment'])->middleware('auth')->name('comment');
+
+
 
 require __DIR__.'/auth.php';
