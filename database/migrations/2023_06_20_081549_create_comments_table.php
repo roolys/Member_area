@@ -17,9 +17,11 @@ return new class extends Migration
             ->constrained()      
             ->onUpdate('cascade')      
             ->onDelete('cascade');
-
-            $table->foreignId('post_id')->constrained()->cascadeOnDelete();       
-
+            $table->foreignId('post_id')
+            ->constrained()      
+            ->onUpdate('cascade')      
+            ->onDelete('cascade');
+         //   $table->foreignId('post_id')->constrained()->cascadeOnDelete();       
             $table->string('name')->nullable();
             $table->string('comment');
             $table->string('usertype')->nullable();

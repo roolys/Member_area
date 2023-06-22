@@ -3,8 +3,7 @@
                 <a href="#"><img src="users/images/news.png" alt="" /> Latest News </a>
                 <a href="#"><img src="users/images/friends.png" alt="" /> Friends </a>
                 <a href="#"><img src="users/images/group.png" alt="" /> Group </a>
-                <a href="#"><img src="users/images/marketplace.png" alt="" /> Marketplace
-                </a>
+            
                 <a href="#"><img src="users/images/watch.png" alt="" /> Watch </a>
                 <a href="#">See More</a>
             </div>

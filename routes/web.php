@@ -35,10 +35,12 @@ Route::post('/user_post',[HomeController::class,'user_post'])->middleware('auth'
 Route::get('/my_post',[HomeController::class,'my_post'])->middleware('auth')->name('my_post');
 
 //Route for store comment in database
-Route::post('/comment_post',[HomeController::class,'comment_post'])->middleware('auth')->name('comment_post');
+Route::post('/comment_post/{id}',[HomeController::class,'comment_post'])->middleware('auth')->name('comment_post');
 //Route for create and display comment
 Route::get('/comment',[HomeController::class,'comment'])->middleware('auth')->name('comment');
-
+//Route::get('/homes',[HomeController::class,'liste_posts'])->name('admin.adminhome');
+Route::get('/reject_post/{id}',[HomeController::class,'reject_post'])->name('reject_post');
+Route::get('/delete/{id}',[HomeController::class,'delete_post'])->middleware('auth')->name('delete_post');
 
 
 require __DIR__.'/auth.php';

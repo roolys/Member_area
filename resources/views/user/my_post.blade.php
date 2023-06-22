@@ -80,7 +80,7 @@
                     {{$post->description}}
                 </p>
 
-                <img class="" src="/images/{{$post->image}}" width="1053px" height="569px" alt="" />
+                <img class="" src="/images/{{$post->image}}" width="600px" height="340px" alt="" />
 
                 <div class="post-row">
                     <div class="activity-icons mt-4">
@@ -89,14 +89,18 @@
                         <div><i class="bi bi-hand-thumbs-up">Like</i></div>
                             <div style="padding-left: 150px;">
                             <i class="bi bi-chat-left">
-                                <a title="text" class="btn" data-bs-toggle="modal"  data-bs-target=.bd-example-modal-lg>Comment</a>
+                                <a title="text" href="route('comment_post', $post->id)}}" data-bs-toggle="modal"  data-bs-target=.bd-example-modal-lg>Comment</a>
                             </i>
                             </div>
+                           
+
+                            <div><a href="{{route('delete_post', $post->id)}}}}" class="btn">Delete</a></div>
                         </div>
                 </div>
 
              </div> 
 
+             @include('user.comment')
 
              @endforeach
 
@@ -110,7 +114,7 @@
 
         <!-- Modal for Comment -->
 
-        @include('user.comment')
+        
 
 
         <!-- ---------Right Sidebar ------------ -->

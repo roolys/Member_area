@@ -22,6 +22,7 @@ return new class extends Migration
             $table->longText('description')->nullable();          
             $table->string('image')->nullable();
             $table->string('usertype')->nullable();
+            $table->string('post_status')->default('active');
 
 
             // $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -68,8 +68,7 @@
             <img src="users/images/advertisement.png" alt="" class="sidebar-ads" /> -->
 
             <div class="sidebar-title">
-                <h4>Conversation</h4>
-                <a href="#">Hide Chat</a>
+                <h4>Members</h4>
             </div>
 
             <div class="online-list">
