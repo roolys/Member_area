@@ -33,3 +33,7 @@ else {
     localStorage.setItem("theme", "light");
 }
 
+function open_file(){
+    document.getElementById().click();
+}
+

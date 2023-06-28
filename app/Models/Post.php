@@ -9,9 +9,19 @@ class Post extends Model
 {
     use HasFactory;
 
-    public function user_post()
+    //We have post and it belongsTo  user
+
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+    //We have Post and it hasMany comment
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->latest();
+        
+    }
+    //
 
 }
