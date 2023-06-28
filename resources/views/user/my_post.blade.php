@@ -79,7 +79,10 @@
                 </div>
                 <p class="post-text">
                     {{$post->description}}
+                
                 </p>
+
+                {{-- <p>Well done</p> --}}
 
                 <img class="" src="/images/{{$post->image}}" width="1053px" height="569px" alt="" />
 
