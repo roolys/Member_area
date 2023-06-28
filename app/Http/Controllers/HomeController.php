@@ -29,13 +29,25 @@ class  HomeController extends Controller
             $usertype=Auth()->user()->usertype;
 
             if($usertype=='user'){      
+<<<<<<< HEAD
                 
                 $posts=Post::All()->sortByDesc('created_at');
+=======
+                $posts=Post::All()->where('post_status','=','active')->sortByDesc('created_at');
+
+               // $posts=Post::All()->sortByDesc('created_at');
+                $comments=Comment::All()->sortByDesc('created_at');
+>>>>>>> origin/raissa
 
                 return view('user.my_post',compact('posts'));
             }
             else if($usertype=='admin'){
-                return view('admin.adminhome');
+                $posts=Post::All()->sortByDesc('created_at');
+                //$posts = Post::all();
+                $count = Post::count();
+                return view('admin.adminhome')->with(['posts' => $posts, 'count' => $count]);
+        
+                //return view('admin.adminhome');
             }
             else{
                 return redirect()->back(); 
@@ -61,7 +73,8 @@ class  HomeController extends Controller
         $post->name=$name;
         $post->usertype=$usertype;
         $post->description=$request->description;
-        $image=$request->file('image');
+        // $post->image='image|mimes:jpeg,png,jpg,gif,svg|max:2048';
+         $image=$request->file('image');
 
         if($image){
             $destinationPath='images/';
@@ -87,6 +100,14 @@ class  HomeController extends Controller
 
     }
 
+    public function liste_posts(){
+        $posts = Post::all();
+        $count = Post::count();
+        return view('admin.adminhome')->with(['posts' => $posts, 'count' => $count]);
+
+      //return view ('admin.adminhome',compact('posts'));  
+    }
+
     //Public Store
     public function store(Request $request){
 
@@ -108,15 +129,29 @@ class  HomeController extends Controller
         $user=Auth::user();
         $user_id=$user->id;
         // $posts=Post::where('user_id','=',$user_id)->get();
+<<<<<<< HEAD
         $posts=Post::All()->sortByDesc('created_at');
 
+=======
+        $posts=Post::All()->where('post_status','=','active')->sortByDesc('created_at');
+
+        //$posts=Post::All()->sortByDesc('created_at');
+>>>>>>> origin/raissa
         return view('user.my_post',compact('posts'));
+    }
+    //delete post
+    public function delete_post($id){
+        $post = Post::find($id);
+            //dd($post);
+        $post->delete();
+        return redirect()->back(); 
     }
 
     //Store comment in database
-    public function comment_post(Post $post, Request $request){
+    public function comment_post(Post $post, Request $request,$id){
         $request->validate([
-            'comment'=>['required','string','between:2,255'],
+            'comment'=>'required'
+           // 'comment'=>['required','string','between:2,255'],
         ]);
         $user=Auth()->user();
         $user_id=$user->id;
@@ -145,6 +180,7 @@ class  HomeController extends Controller
 
     //Display comment 
     public function comment(Post $post){
+        $posts = Post::all();
         $user=Auth::user();
         $user_id=$user->id;
         $post_id=$post->id;
@@ -154,4 +190,19 @@ class  HomeController extends Controller
         return view('user.comment',compact('comments'));
 
     }
+
+    public function reject_post($id){
+        
+        $post=Post::find($id);
+       // dd($post);
+        $post->post_status= 'rejected';
+        $post->save();
+       // return redirect(route('admin.adminhome'))->with('status', 'Le post a bien été bloqué avec succes.');
+    // return redirect(route('admin.adminhome'))->with('status', 'Le post a bien été bloqué avec succes.');
+    return redirect()->back(); 
+    }
+
+   
+
+      
 }
