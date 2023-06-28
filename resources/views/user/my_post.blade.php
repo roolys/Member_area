@@ -28,7 +28,7 @@
         <!--Main start-->
         <div class="main-content">
 
-            <div class="write-poste-container">
+            <div class="write-post-container">
                 <form action="{{url('user_post')}}" method="POST" enctype="multipart/form-data">
                     @csrf
 
