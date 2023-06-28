@@ -62,6 +62,8 @@
             <div class="" style="margin-top: 5%;">
 
                 @foreach($posts as $post)
+             @include('user.comment')
+
                     
              <div class="post-contain" style="margin-top: 5%;">
                 <div class="post-row mt-5">
@@ -75,7 +77,6 @@
                         </div>
                     </div>
                 </div>
-
                 <p class="post-text">
                     {{$post->description}}
                 </p>
@@ -89,15 +90,16 @@
                         <div><i class="bi bi-hand-thumbs-up">Like</i></div>
                             <div style="padding-left: 150px;">
                             <i class="bi bi-chat-left">
-                                <a title="text" class="btn" data-bs-toggle="modal"  data-bs-target=.bd-example-modal-lg>Comment</a>
+                                <a title="text" class="btn" data-bs-toggle="modal" type="submit"   data-bs-target=.bd-example-modal-lg>Comment</a>
                             </i>
-                            </div>
+
+                            </div>    
                         </div>
                 </div>
 
              </div> 
 
-
+       
              @endforeach
 
             </div>
@@ -110,7 +112,6 @@
 
         <!-- Modal for Comment -->
 
-        @include('user.comment')
 
 
         <!-- ---------Right Sidebar ------------ -->

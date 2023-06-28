@@ -31,9 +31,8 @@ class  HomeController extends Controller
             if($usertype=='user'){      
                 
                 $posts=Post::All()->sortByDesc('created_at');
-                $comments=Comment::All()->sortByDesc('created_at');
 
-                return view('user.my_post',compact('posts','comments'));
+                return view('user.my_post',compact('posts'));
             }
             else if($usertype=='admin'){
                 return view('admin.adminhome');
@@ -109,8 +108,8 @@ class  HomeController extends Controller
         $user=Auth::user();
         $user_id=$user->id;
         // $posts=Post::where('user_id','=',$user_id)->get();
-
         $posts=Post::All()->sortByDesc('created_at');
+
         return view('user.my_post',compact('posts'));
     }
 
@@ -131,14 +130,15 @@ class  HomeController extends Controller
         //New instance of model Comment
         $comment=new Comment;
         //Attribute value for every field in the table comments
-        $comment->user_id=$user_id;
         $comment->post_id=$post_id;
         $comment->name=$name;
         $comment->usertype=$usertype;
 
         $comment->comment=$request->comment;
         //Save data in the table with the save() method
+        // $comment->save();
         $comment->save();
+
         //Redirection to create and display comment
         return redirect()->route('comment')->with('status','Comment added');
     }
@@ -150,7 +150,8 @@ class  HomeController extends Controller
         $post_id=$post->id;
         //SortBy By created_at to range the comments    
         $comments=Comment::All()->sortByDesc('created_at');
-        return view('user.my_post',compact('comments'));
+
+        return view('user.comment',compact('comments'));
 
     }
 }
