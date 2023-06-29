@@ -29,15 +29,8 @@ class  HomeController extends Controller
             $usertype=Auth()->user()->usertype;
 
             if($usertype=='user'){      
-<<<<<<< HEAD
                 
                 $posts=Post::All()->sortByDesc('created_at');
-=======
-                $posts=Post::All()->where('post_status','=','active')->sortByDesc('created_at');
-
-               // $posts=Post::All()->sortByDesc('created_at');
-                $comments=Comment::All()->sortByDesc('created_at');
->>>>>>> origin/raissa
 
                 return view('user.my_post',compact('posts'));
             }
@@ -129,14 +122,8 @@ class  HomeController extends Controller
         $user=Auth::user();
         $user_id=$user->id;
         // $posts=Post::where('user_id','=',$user_id)->get();
-<<<<<<< HEAD
         $posts=Post::All()->sortByDesc('created_at');
 
-=======
-        $posts=Post::All()->where('post_status','=','active')->sortByDesc('created_at');
-
-        //$posts=Post::All()->sortByDesc('created_at');
->>>>>>> origin/raissa
         return view('user.my_post',compact('posts'));
     }
     //delete post
