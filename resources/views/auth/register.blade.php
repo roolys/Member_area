@@ -14,19 +14,19 @@
 
         <!-- Surname -->
 
-        <div class="mt-4">
+        {{-- <div class="mt-4">
             <x-input-label for="prenom" :value="__('Prenom')" />
             <x-text-input id="prenom" class="block mt-1 w-full" type="text" name="prenom" :value="old('prenom')" required autofocus autocomplete="prenom" />
             <x-input-error :messages="$errors->get('prenom')" class="mt-2" />
-        </div>
+        </div> --}}
 
         <!-- Pseudo -->
 
-        <div class="mt-4">
+        {{-- <div class="mt-4">
             <x-input-label for="pseudo" :value="__('Pseudo')" />
             <x-text-input id="pseudo" class="block mt-1 w-full" type="text" name="pseudo" :value="old('pseudo')" required autofocus autocomplete="pseudo" />
             <x-input-error :messages="$errors->get('pseudo')" class="mt-2" />
-        </div>
+        </div> --}}
 
         <!-- Email Address -->
         <div class="mt-4">
